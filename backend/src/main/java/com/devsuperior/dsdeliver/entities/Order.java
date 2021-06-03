@@ -48,6 +48,10 @@ public class Order implements Serializable {
 		this.moment = moment;
 		this.status = status;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
 
 	public Set<Product> getProducts() {
 		return products;
