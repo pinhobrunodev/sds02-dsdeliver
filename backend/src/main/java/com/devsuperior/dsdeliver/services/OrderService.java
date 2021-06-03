@@ -11,6 +11,7 @@ import com.devsuperior.dsdeliver.dto.OrderDTO;
 import com.devsuperior.dsdeliver.dto.ProductDTO;
 import com.devsuperior.dsdeliver.entities.Order;
 import com.devsuperior.dsdeliver.entities.Product;
+import com.devsuperior.dsdeliver.entities.enums.OrderStatus;
 import com.devsuperior.dsdeliver.mapper.OrderMapper;
 import com.devsuperior.dsdeliver.repositories.OrderRepository;
 import com.devsuperior.dsdeliver.repositories.ProductRepository;
@@ -36,7 +37,15 @@ public class OrderService {
 				order.getProducts().add(product);
 			}
 			repository.save(order);
-			return mapper.toOrderDTO(order);
+			return new OrderDTO(order);
+		}
+		
+		@Transactional
+		public OrderDTO setDelivered(Long id) {
+			Order order = repository.getOne(id);
+			order.setStatus(OrderStatus.DELIVERED);
+			repository.save(order);
+			return new OrderDTO(order);
 		}
 		
 		@Transactional(readOnly = true)

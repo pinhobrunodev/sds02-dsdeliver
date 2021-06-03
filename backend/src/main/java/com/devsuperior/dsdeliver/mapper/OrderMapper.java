@@ -21,15 +21,5 @@ public class OrderMapper {
 		return entity;
 	}
 	
-	public OrderDTO toOrderDTO(Order entity) {
-		OrderDTO dto = new OrderDTO();
-		dto.setId(entity.getId());
-		dto.setAddress(entity.getAddress());
-		dto.setLatitude(entity.getLatitude());
-		dto.setLongitude(entity.getLongitude());
-		dto.setMoment(entity.getMoment());
-		dto.setStatus(entity.getStatus());
-		return dto;
-	}
 	
 }
